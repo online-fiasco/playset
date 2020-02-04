@@ -1,0 +1,29 @@
+{
+  "name": "playset",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XxshiftxX/online-fiasco-playset.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XxshiftxX/online-fiasco-playset/issues"
+  },
+  "homepage": "https://github.com/XxshiftxX/online-fiasco-playset#readme",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.40",
+    "serverless-dotenv-plugin": "^2.3.1",
+    "serverless-offline": "^5.12.1",
+    "serverless-plugin-typescript": "^1.1.9",
+    "tslint": "^6.0.0",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.7.5"
+  }
+}
