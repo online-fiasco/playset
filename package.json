@@ -19,11 +19,15 @@
   "homepage": "https://github.com/XxshiftxX/online-fiasco-playset#readme",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.40",
+    "@types/mongoose": "^5.7.0",
     "serverless-dotenv-plugin": "^2.3.1",
     "serverless-offline": "^5.12.1",
     "serverless-plugin-typescript": "^1.1.9",
     "tslint": "^6.0.0",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "mongoose": "^5.8.11"
   }
 }
