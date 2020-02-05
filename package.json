@@ -4,7 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "deploy": "serverless deploy -v"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "mongoose": "^5.8.11"
+    "mongoose": "^5.8.11",
+    "serverless": "^1.62.0"
   }
 }
