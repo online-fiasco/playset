@@ -1,4 +1,4 @@
-name: fiasco-playset-workflow
+name: Production Deploy
 on:
   push:
     branches:
@@ -25,3 +25,6 @@ jobs:
 
       - name: Test
         run: npm test
+
+      - name: Deploy serverless
+        run: serverless deploy -v --stage prod
