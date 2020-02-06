@@ -1,6 +1,20 @@
+import * as sinon from 'sinon';
+import { PlaysetDB } from '../src/db';
+import { getPlaysets } from '../src/router';
+import { should } from 'chai';
+
+should();
+
 describe('Endpoint Test', () => {
   describe('GET /', () => {
-    it('200 OK', () => {
+    it('200 OK', async () => {
+      const dbRead = sinon.stub(PlaysetDB.prototype, 'read');
+      dbRead.resolves([]);
+
+      const res = await getPlaysets({});
+
+      res.should.be.empty;
+      dbRead.called.should.be.true;
     });
 
     it('200 OK - Paging', () => {
