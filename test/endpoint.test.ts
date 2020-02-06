@@ -1,5 +1,3 @@
-import { expect } from "chai";
-
 describe('Endpoint Test', () => {
   describe('GET /', () => {
     it('200 OK', () => {

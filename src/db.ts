@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import { Playset, PlaysetModel } from './Model/Playset';
+import { Playset, PlaysetModel } from './model/Playset';
 
 export class PlaysetDB {
   constructor() { }
