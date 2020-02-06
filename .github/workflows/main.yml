@@ -26,14 +26,14 @@ jobs:
       - name: Create .env File
         run: echo ${{ secrets.ENV_CONTENT }} > .env
 
+      - name: Test
+        run: npm test
+        
       - name: Install Serverless
         run: sudo npm i -g serverless
 
       - name: Config Serverless AWS Credentials
         run: sudo serverless config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
 
-      - name: Test
-        run: npm test
-
       - name: Deploy serverless
-        run: serverless deploy -v --stage prod
+        run: sudo serverless deploy -v --stage prod
