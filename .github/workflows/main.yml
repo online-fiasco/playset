@@ -22,6 +22,15 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      
+      - name: Create .env File
+        uses: finnp/create-file-action@master
+        with:
+          FILE_NAME: .env
+          FILE_DATA: ${{ secrets.ENV_CONTENT }}
+
+      - name: Config Serverless AWS Credentials
+        run: serverless config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
 
       - name: Test
         run: npm test
