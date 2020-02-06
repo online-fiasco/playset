@@ -1,4 +1,3 @@
-org: xxshiftxx
 app: fiasco-online
 service: fiasco-online-playset
 plugins:
