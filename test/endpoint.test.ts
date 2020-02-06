@@ -1,9 +1,12 @@
+import { expect } from "chai";
+
 describe('Endpoint Test', () => {
   describe('GET /', () => {
     it('200 OK', () => {
     });
 
     it('200 OK - Paging', () => {
+      expect(3).to.equal(4);
     });
 
     it('200 OK - Order by', () => {
