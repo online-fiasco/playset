@@ -37,7 +37,6 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "mongoose": "^5.8.11",
-    "serverless": "^1.62.0"
+    "mongoose": "^5.8.11"
   }
 }
