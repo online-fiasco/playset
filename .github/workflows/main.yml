@@ -28,12 +28,14 @@ jobs:
 
       - name: Test
         run: npm test
-        
+
       - name: Install Serverless
         run: sudo npm i -g serverless
 
-      - name: Config Serverless AWS Credentials
-        run: sudo serverless config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
-
       - name: Deploy serverless
-        run: sudo serverless deploy -v --stage prod
+        uses: serverless/github-action@master
+        with:
+          args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET }}
