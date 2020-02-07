@@ -6,8 +6,8 @@ import { should } from 'chai';
 should();
 
 describe('Endpoint Test', () => {
-  beforeEach(() => {
-    sinon.reset();
+  afterEach(() => {
+    sinon.restore();
   });
 
   describe('GET /', () => {
