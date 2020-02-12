@@ -4,7 +4,7 @@ type GetPlaysetsQuery = {
   pageIndex?: number,
   pageSize?: number,
 };
-export const getPlaysets = (query: GetPlaysetsQuery): Playset[] => {
+export const getPlaysets = async (query: GetPlaysetsQuery): Promise<Playset[]> => {
 };
 
 export default getPlaysets;
