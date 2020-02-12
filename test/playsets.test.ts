@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { PlaysetDB } from '../src/db';
-import { getPlaysets, postPlaysets } from '../src/service';
+import { getPlaysets, postPlaysets, getSinglePlaysets } from '../src/service';
 import { should } from 'chai';
 import { generateSampleData } from './sampledata';
 
@@ -11,7 +11,7 @@ describe('Service Test', () => {
     sinon.restore();
   });
 
-  describe('Get Playset', () => {
+  describe('Get Playsets', () => {
     it('Normal case', async () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'read');
       readStub.resolves([]);
@@ -63,7 +63,7 @@ describe('Service Test', () => {
 
       const invoke = () => postPlaysets(sample);
 
-      invoke.should.throws(TypeError);
+      invoke.should.throws(TypeError, 'page should have 6 categories');
       createStub.called.should.be.false;
     });
 
@@ -75,8 +75,30 @@ describe('Service Test', () => {
 
       const invoke = () => postPlaysets(sample);
 
-      invoke.should.throws(TypeError);
+      invoke.should.throws(TypeError, 'category should have 6 items');
       createStub.called.should.be.false;
+    });
+  });
+
+  describe('Get Single Playset', () => {
+    it('Normal case', async () => {
+      const readStub = sinon.stub(PlaysetDB.prototype, 'readOne');
+      readStub.resolves({ test: 'clear' } as any);
+
+      const result = await getSinglePlaysets('sampleid');
+
+      result.should.be.has.property('test', 'clear');
+      readStub.withArgs({ _id: 'sampleid' }).called.should.be.true;
+    });
+
+    it('No such playset', async () => {
+      const readStub = sinon.stub(PlaysetDB.prototype, 'readOne');
+      readStub.resolves(undefined);
+
+      const result = await getSinglePlaysets('sampleid');
+
+      result.should.be.undefined;
+      readStub.withArgs({ _id: 'sampleid' }).called.should.be.true;
     });
   });
 });
