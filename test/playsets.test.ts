@@ -1,7 +1,8 @@
 import * as sinon from 'sinon';
 import { PlaysetDB } from '../src/db';
-import { getPlaysets } from '../src/router';
-import { should } from 'chai';
+import { getPlaysets, postPlaysets } from '../src/service';
+import { should, expect } from 'chai';
+import { generateSampleData } from './sampledata';
 
 should();
 
@@ -41,16 +42,16 @@ describe('Endpoint Test', () => {
       res.should.be.contains({ _id: 'f' });
       dbRead.called.should.be.true;
     });
-
-    it('200 OK - Order by', () => {
-    });
   });
 
   describe('POST /', () => {
-    it('200 OK', () => {
-    });
+    it('200 OK', async () => {
+      const dbCreate = sinon.stub(PlaysetDB.prototype, 'create');
+      const sample = generateSampleData();
 
-    it('400 Bad Request - No title', () => {
+      await postPlaysets(sample);
+
+      dbCreate.withArgs(sample).called.should.be.true;
     });
 
     it('400 Bad Request - No Playset', () => {

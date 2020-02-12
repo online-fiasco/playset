@@ -4,7 +4,7 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "nyc mocha -r node_modules/ts-node/register/transpile-only **/*.test.ts",
     "deploy": "serverless deploy -v"
   },
   "repository": {
