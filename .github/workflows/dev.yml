@@ -1,0 +1,39 @@
+name: Develop Deploy
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@develop
+      
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Create .env File
+        run: echo ${{ secrets.ENV_CONTENT }} > .env
+
+      - name: Test
+        run: npm test
+
+      - name: Install Serverless
+        run: sudo npm i -g serverless
+        
+      - name: Config Serverless AWS Credentials
+        run: sudo serverless config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
+
+      - name: Deploy serverless
+        run: sudo serverless deploy -v --stage dev
