@@ -1,6 +1,11 @@
 import * as mongoose from 'mongoose';
 import { Playset, PlaysetModel } from './model/Playset';
 
+type PageQuery = {
+  pageIndex?: number,
+  pageSize?: number,
+};
+
 export class PlaysetDB {
   constructor() { }
 
@@ -9,8 +14,12 @@ export class PlaysetDB {
     return model.save();
   }
 
-  read (query: any): mongoose.DocumentQuery<Playset[], Playset> {
-    return PlaysetModel.find(query);
+  read (query: any, pageQuery: PageQuery): mongoose.DocumentQuery<Playset[], Playset> {
+    const { pageIndex, pageSize } = pageQuery;
+
+    return PlaysetModel.find(query)
+      .limit(pageSize ?? 20)
+      .skip((pageSize ?? 20) * (pageIndex ?? 1));
   }
 
   readOne (query: any): mongoose.DocumentQuery<Playset | null, Playset> {

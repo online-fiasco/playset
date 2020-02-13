@@ -14,24 +14,22 @@ describe('Service Test', () => {
   describe('Get Playsets', () => {
     it('Normal case', async () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'read');
-      readStub.resolves([]);
+      readStub.resolves([{ _id: 'a' } as any]);
 
       const result = await getPlaysets({});
 
-      result.should.be.exist.and.empty;
+      result.should.deep.includes({ _id: 'a' });
       readStub.called.should.be.true;
     });
 
     it('Paging', async () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'read');
-      readStub.resolves([]);
+      readStub.resolves([{ _id: 'a' } as any]);
 
       const result = await getPlaysets({ pageIndex: 2, pageSize: 3 });
 
-      result.should.be.contains({ _id: 'd' });
-      result.should.be.contains({ _id: 'e' });
-      result.should.be.contains({ _id: 'f' });
-      readStub.called.should.be.true;
+      result.should.deep.includes({ _id: 'a' });
+      readStub.withArgs({}, { pageIndex: 2, pageSize: 3 }).called.should.be.true;
     });
   });
 
