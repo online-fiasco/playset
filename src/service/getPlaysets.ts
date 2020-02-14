@@ -5,6 +5,7 @@ type GetPlaysetsQuery = {
   pageIndex?: number,
   pageSize?: number,
 };
+
 export const getPlaysets = async (query: GetPlaysetsQuery): Promise<Playset[]> => {
   const db = new PlaysetDB();
 
