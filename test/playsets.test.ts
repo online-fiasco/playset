@@ -60,7 +60,7 @@ describe('Service Test', () => {
       const createStub = sinon.stub(PlaysetDB.prototype, 'create');
 
       const sample = generateSampleData();
-      sample.desire = sample.desire.slice(0, 6);
+      sample.desire = sample.desire.slice(0, 5);
 
       const promise = postPlaysets(sample);
 
@@ -72,7 +72,7 @@ describe('Service Test', () => {
       const createStub = sinon.stub(PlaysetDB.prototype, 'create');
 
       const sample = generateSampleData();
-      sample.desire[0].items = sample.desire[0].items.slice(0, 6);
+      sample.desire[0].items = sample.desire[0].items.slice(0, 5);
 
       const promise = postPlaysets(sample);
 
