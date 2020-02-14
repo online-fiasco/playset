@@ -21,10 +21,12 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.40",
     "@types/chai": "^4.2.8",
+    "@types/chai-as-promised": "^7.1.2",
     "@types/mocha": "^7.0.1",
     "@types/mongoose": "^5.7.0",
     "@types/sinon": "^7.5.1",
     "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
     "mocha": "^7.0.1",
     "nyc": "^15.0.0",
     "serverless-dotenv-plugin": "^2.3.1",

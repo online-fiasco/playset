@@ -1,10 +1,13 @@
 import * as sinon from 'sinon';
 import { PlaysetDB } from '../src/db';
 import { getPlaysets, postPlaysets, getSinglePlaysets } from '../src/service';
-import { should } from 'chai';
+import * as chai from 'chai';
+import * as chaiAsPromised from 'chai-as-promised';
+
 import { generateSampleData } from './sampledata';
 
-should();
+chai.should();
+chai.use(chaiAsPromised);
 
 describe('Service Test', () => {
   afterEach(() => {
@@ -47,9 +50,9 @@ describe('Service Test', () => {
       const createStub = sinon.stub(PlaysetDB.prototype, 'create');
       const sample = {} as any;
 
-      const invoke = () => postPlaysets(sample);
+      const promise = postPlaysets(sample);
 
-      invoke.should.throws(TypeError);
+      await promise.should.be.rejectedWith(TypeError);
       createStub.called.should.be.false;
     });
 
@@ -59,9 +62,9 @@ describe('Service Test', () => {
       const sample = generateSampleData();
       sample.desire = sample.desire.slice(0, 6);
 
-      const invoke = () => postPlaysets(sample);
+      const promise = postPlaysets(sample);
 
-      invoke.should.throws(TypeError, 'page should have 6 categories');
+      promise.should.be.rejectedWith(TypeError, 'page should have 6 categories');
       createStub.called.should.be.false;
     });
 
@@ -71,9 +74,9 @@ describe('Service Test', () => {
       const sample = generateSampleData();
       sample.desire[0].items = sample.desire[0].items.slice(0, 6);
 
-      const invoke = () => postPlaysets(sample);
+      const promise = postPlaysets(sample);
 
-      invoke.should.throws(TypeError, 'category should have 6 items');
+      promise.should.be.rejectedWith(TypeError, 'category should have 6 items');
       createStub.called.should.be.false;
     });
   });
