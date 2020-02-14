@@ -88,17 +88,18 @@ describe('Service Test', () => {
 
       const result = await getSinglePlaysets('sampleid');
 
-      result.should.be.has.property('test', 'clear');
+      result?.should.not.be.null;
+      result?.should.be.has.property('test', 'clear');
       readStub.withArgs({ _id: 'sampleid' }).called.should.be.true;
     });
 
     it('No such playset', async () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'readOne');
-      readStub.resolves(undefined);
+      readStub.resolves(null);
 
       const result = await getSinglePlaysets('sampleid');
 
-      result.should.be.undefined;
+      result?.should.be.null;
       readStub.withArgs({ _id: 'sampleid' }).called.should.be.true;
     });
   });
