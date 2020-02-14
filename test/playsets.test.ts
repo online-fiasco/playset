@@ -1,6 +1,6 @@
 import * as sinon from 'sinon';
 import { PlaysetDB } from '../src/db';
-import { getPlaysets, postPlaysets, getSinglePlaysets } from '../src/service';
+import { getPlaysets, postPlaysets, getSinglePlayset } from '../src/service';
 import * as chai from 'chai';
 import * as chaiAsPromised from 'chai-as-promised';
 
@@ -86,7 +86,7 @@ describe('Service Test', () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'readOne');
       readStub.resolves({ test: 'clear' } as any);
 
-      const result = await getSinglePlaysets('sampleid');
+      const result = await getSinglePlayset('sampleid');
 
       result?.should.not.be.null;
       result?.should.be.has.property('test', 'clear');
@@ -97,7 +97,7 @@ describe('Service Test', () => {
       const readStub = sinon.stub(PlaysetDB.prototype, 'readOne');
       readStub.resolves(null);
 
-      const result = await getSinglePlaysets('sampleid');
+      const result = await getSinglePlayset('sampleid');
 
       result?.should.be.null;
       readStub.withArgs({ _id: 'sampleid' }).called.should.be.true;
