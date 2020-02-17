@@ -11,7 +11,7 @@ chai.should();
 chai.use(chaiAsPromised);
 
 describe('Service Test', () => {
-  beforeEach(() => {
+  before(() => {
     const dbConnection = sinon.stub(mongoose.connection, 'readyState');
     dbConnection.value(1);
   });
