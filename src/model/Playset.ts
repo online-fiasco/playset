@@ -46,4 +46,4 @@ const playsetSchema = new mongoose.Schema({
   (global as any).PlaysetModel
   ?? mongoose.model<Playset>('playsets', playsetSchema);
 
-export const PlaysetModel = (global as any).PlaysetModel;
+export const PlaysetModel: mongoose.Model<Playset, {}> = (global as any).PlaysetModel;
