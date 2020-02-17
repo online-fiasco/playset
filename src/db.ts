@@ -7,7 +7,12 @@ type PageQuery = {
 };
 
 export class PlaysetDB {
-  constructor() { }
+  constructor() {
+    if (mongoose.connection.readyState !== 1) {
+      const mongoURI = process.env.MONGO_URI as string;
+      mongoose.connect(mongoURI, { useNewUrlParser: true });
+    }
+  }
 
   create (playset: Playset): Promise<Playset> {
     const model = new PlaysetModel(playset);
@@ -19,7 +24,7 @@ export class PlaysetDB {
 
     return PlaysetModel.find(query)
       .limit(pageSize ?? 20)
-      .skip((pageSize ?? 20) * (pageIndex ?? 1));
+      .skip((pageSize ?? 20) * ((pageIndex ?? 1) - 1));
   }
 
   readOne (query: any): mongoose.DocumentQuery<Playset | null, Playset> {
