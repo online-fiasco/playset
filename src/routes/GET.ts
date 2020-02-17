@@ -21,7 +21,7 @@ export const route: Handler = async (event: any, context: Context) => {
   const response = {
     statusCode: 200,
     headers: { 'X-Total-Count': size },
-    body: JSON.stringify({ result, event }),
+    body: JSON.stringify({ result }),
   };
 
   return response;
