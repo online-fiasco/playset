@@ -7,7 +7,7 @@ type GetPlaysetsQuery = {
 };
 
 export const getPlaysets = async (query: GetPlaysetsQuery): Promise<Playset[]> => {
-  const db = new PlaysetDB();
+  const db = await PlaysetDB.create();
 
   const result = await db.read({ }, query);
 

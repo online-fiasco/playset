@@ -1,7 +1,7 @@
 import { PlaysetDB } from '../db';
 
 export const getPlaysetCount = async (): Promise<number> => {
-  const db = new PlaysetDB();
+  const db = await PlaysetDB.create();
 
   const result = await db.count();
 

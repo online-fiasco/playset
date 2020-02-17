@@ -4,7 +4,7 @@ import { PlaysetDB } from '../db';
 export const postPlaysets = async (playset: Playset) => {
   verifyPlayset(playset);
 
-  const db = new PlaysetDB();
+  const db = await PlaysetDB.create();
 
   db.create(playset);
 };

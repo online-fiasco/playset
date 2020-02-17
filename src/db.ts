@@ -7,11 +7,15 @@ type PageQuery = {
 };
 
 export class PlaysetDB {
-  constructor() {
+  private constructor() {}
+
+  static async create (): Promise<PlaysetDB> {
     if (mongoose.connection.readyState !== 1) {
       const mongoURI = process.env.MONGO_URI as string;
-      mongoose.connect(mongoURI, { useNewUrlParser: true });
+      await mongoose.connect(mongoURI, { useNewUrlParser: true });
     }
+
+    return new PlaysetDB();
   }
 
   create (playset: Playset): Promise<Playset> {
