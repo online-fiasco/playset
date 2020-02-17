@@ -25,3 +25,10 @@ functions:
           path: /
           method: get
           cors: true
+  POST:
+    handler: src/routes/POST.route
+    events:
+      - http:
+          path: /
+          method: post
+          cors: true
