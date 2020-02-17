@@ -19,6 +19,10 @@ export class PlaysetDB {
     return model.save();
   }
 
+  count (): mongoose.Query<number> {
+    return PlaysetModel.countDocuments();
+  }
+
   read (query: any, pageQuery: PageQuery): mongoose.DocumentQuery<Playset[], Playset> {
     const { pageIndex, pageSize } = pageQuery;
 
