@@ -1,4 +1,4 @@
-import * as sinon from 'sinon';
+import * as sinon from '../src/libs/sinon';
 import * as mongoose from 'mongoose';
 import { PlaysetDB } from '../src/db';
 import { getPlaysets, postPlaysets, getSinglePlayset } from '../src/service';
@@ -11,7 +11,7 @@ chai.should();
 chai.use(chaiAsPromised);
 
 describe('Service Test', () => {
-  before(() => {
+  beforeEach(() => {
     const dbConnection = sinon.stub(mongoose.connection, 'readyState');
     dbConnection.value(1);
   });
