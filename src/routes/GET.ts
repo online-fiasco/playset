@@ -3,7 +3,7 @@ import { getPlaysets, getPlaysetCount } from '../service';
 import { Playset } from '../model/Playset';
 
 export const route: Handler = async (event: any, context: Context) => {
-  const { pageIndex, pageSize } = event.queryStringParameters;
+  const { pageIndex, pageSize } = event.queryStringParameters ?? {};
   const query = {
     pageIndex: pageIndex ? parseInt(pageIndex, 10) : undefined,
     pageSize: pageSize ? parseInt(pageSize, 10) : undefined,

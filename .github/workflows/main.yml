@@ -24,7 +24,7 @@ jobs:
         run: npm install
       
       - name: Create .env File
-        run: echo ${{ secrets.ENV_CONTENT }} > .env
+        run: echo "${{ secrets.ENV_CONTENT }}" > .env
 
       - name: Test
         run: npm test
