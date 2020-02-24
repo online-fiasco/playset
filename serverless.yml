@@ -12,12 +12,6 @@ provider:
   region: us-east-2
 
 functions:
-  hello:
-    handler: src/handler.hello
-    events:
-      - http:
-          path: /hello
-          method: get
   GET:
     handler: src/routes/GET.route
     events:
