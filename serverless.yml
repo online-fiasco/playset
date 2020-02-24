@@ -26,3 +26,10 @@ functions:
           path: /
           method: post
           cors: true
+  .id-GET:
+    handler: src/routes/{id}/GET.route
+    events:
+      - http:
+          path: /{id}
+          method: get
+          cors: true
