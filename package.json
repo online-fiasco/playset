@@ -5,6 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "test": "nyc mocha -r node_modules/ts-node/register/transpile-only **/*.test.ts",
+    "dev": "serverless offline",
     "deploy": "serverless deploy -v"
   },
   "repository": {
